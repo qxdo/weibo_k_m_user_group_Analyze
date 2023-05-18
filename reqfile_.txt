@@ -1,0 +1,8 @@
+pip install arrow
+pip install bs4
+pip install requests
+pip install grequests
+pip install fake_useragent
+pip install redis
+pip install pymysql
+pip install DBUtils

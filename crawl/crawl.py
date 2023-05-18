@@ -13,7 +13,7 @@ from crawl.weibo import Parser
 
 
 def async_crawl_weibo(start_page=1, end_page=5):
-    spider = Spider(base_url="https://weibo.cn/gzyhl", name="17317540230", async=True)
+    spider = Spider(base_url="https://weibo.cn/gzyhl", name="17317540230", a_sync=True)
     responses = []
     for page in range(start_page, end_page+1):
         if page % 10 == 0:
