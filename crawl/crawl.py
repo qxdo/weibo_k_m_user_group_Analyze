@@ -31,13 +31,19 @@ def run_async_crawl(start_page=1, end_page=5):
     :param end_page:
     :return:
     """
-    responses = async_crawl_weibo(start_page=start_page, end_page=end_page)
-    result = []
-    apps = [Parser(response.text) for response in responses]
-    for app in apps:
-        app.extract_text()
-        result.extend(app.result)
-    apps[0].close_client()
+    # responses = async_crawl_weibo(start_page=start_page, end_page=end_page)
+    # print(responses)
+    # result = []
+    # apps = [Parser(response.text) for response in responses]
+    # for app in apps:
+    # app.extract_text()
+    # result.extend(app.result)
+    # apps[0].close_client()
+    import numpy as np
+
+    # 生成随机二维数组
+    result = np.random.randint(0, 10000, size=(1000, 4))
+
     return result
 
 

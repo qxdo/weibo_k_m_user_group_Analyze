@@ -100,7 +100,7 @@ def run_build_vsm_by_file(filename="old_mysql"):
     :return:
     """
     rows = get_text_from_file(filename=filename)
-    rows = [row.decode('utf-8').strip().split('\t') for row in rows]
+    rows = [row.strip().split('\t') for row in rows]
     tf_idf = TFIDF(rows)
     tf_idf_dict = tf_idf.tf_idf()
     texts = tf_idf.get_filter_text()

@@ -113,16 +113,29 @@ def sensitive():
     敏感词.
     :return:
     """
-    results = get_mysql_opinion()
-    opinion = ['心理健康', '社会突发事件', '校园安全', '反动言论']
+    # results = get_mysql_opinion()
+    # opinion = ['心理健康', '社会突发事件', '校园安全', '反动言论']
 
-    sen_type = request.values.get("category")
-    if sen_type:
-        opinion.remove(sen_type)
-        opinion.insert(0, sen_type)
-        rows = results[sen_type]
-    else:
-        rows = results[opinion[0]]
+    # sen_type = request.values.get("category")
+    # if sen_type:
+    #     opinion.remove(sen_type)
+    #     opinion.insert(0, sen_type)
+    #     rows = results[sen_type]
+    # else:
+    #     # rows = results[opinion[0]]
+
+    # 定义敏感词长度和数量
+    num_rows = 1000
+    num_cols = 6
+    word_len = 8
+    # 生成随机敏感词列表
+    sensitive_words = []
+    for i in range(num_rows):
+        row = []
+        for j in range(num_cols):
+            word = ''.join(random.choices(string.ascii_lowercase + string.digits, k=word_len))
+            row.append(word)
+        sensitive_words.append(row)
 
     return render_template('weibo/sensitive.html', rows=rows, categorys=opinion)
 

@@ -6,3 +6,6 @@ pip install fake_useragent
 pip install redis
 pip install pymysql
 pip install DBUtils
+pip install jieba
+pip install scikit-learn
+pip install matplotlib

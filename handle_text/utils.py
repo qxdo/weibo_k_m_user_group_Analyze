@@ -15,8 +15,7 @@ from common.config import K_CLUSTER
 from common.redis_client import redis_client
 from sklearn import metrics
 from sklearn.cluster import KMeans
-
-
+import random,string
 def load_data_set(vsm_name):
     """ load dataset from redis
 
@@ -221,20 +220,31 @@ def get_text_from_file(filename, cate='default'):
     :param cate:
     :return:
     """
-    if cate == 'category':
-        file_path = os.path.join(abs_path, 'classify_text/data/%s.txt' % filename)
-    else:
-        file_path = os.path.join(abs_path, 'cluster_result/data/%s.txt' % filename)
+    # if cate == 'category':
+    #     file_path = os.path.join(abs_path, 'classify_text/data/%s.txt' % filename)
+    # else:
+    #     file_path = os.path.join(abs_path, 'cluster_result/data/%s.txt' % filename)
     result = []
-    with open(file_path, 'rb') as fp:
-        for line in fp.readlines():
-            text, comment, like, date = line.decode('utf-8').split('\t')
-            # 过滤文本小于10并且评论数小于2
-            if len(text) >= 10 and int(like) >= 10:
-                result.append(line)
-            elif len(text) >= 10 and int(comment) >= 2:
-                result.append(line)
+    # with open(file_path, 'rb') as fp:
+    #     for line in fp.readlines():
+    #         text, comment, like, date = line.decode('utf-8').split('\t')
+    #         # 过滤文本小于10并且评论数小于2
+    #         if len(text) >= 10 and int(like) >= 10:
+    #             result.append(line)
+    #         elif len(text) >= 10 and int(comment) >= 2:
+    #             result.append(line)
 
+    # 定义敏感词长度和数量
+    num_rows = 1000
+    num_cols = 4
+    word_len = 8
+    # 生成随机敏感词列表
+    for i in range(num_rows):
+        row = []
+        for j in range(num_cols):
+            word = ''.join(random.choices(string.ascii_lowercase + string.digits, k=word_len))
+            row.append(word)
+        result.append("\t".join(row))
     return result
 
 
@@ -273,5 +283,19 @@ def get_hot_score_from_redis(db=2):
 
 
 def get_categorys():
-    categorys = os.listdir(os.path.join(abs_path, 'classify_text/data'))
+    # categorys = os.listdir(os.path.join(abs_path, 'classify_text/data'))
+    # 定义敏感词长度和数量
+    num_rows = 1000
+    num_cols = 8
+    word_len = 8
+    # 生成随机敏感词列表
+    categorys = []
+    for i in range(num_rows):
+        row = []
+        for j in range(num_cols):
+            word = ''.join(random.choices(string.ascii_lowercase + string.digits, k=word_len))
+            row.append(word)
+        categorys.append(row)
+
+
     return categorys

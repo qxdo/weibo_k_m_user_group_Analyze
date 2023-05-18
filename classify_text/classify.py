@@ -9,7 +9,8 @@ import os
 import jieba
 import shutil
 import pickle
-from sklearn.datasets.base import Bunch
+# from sklearn.datasets.base import Bunch
+from sklearn.utils import Bunch
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB

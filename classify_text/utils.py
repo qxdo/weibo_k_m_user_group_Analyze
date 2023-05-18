@@ -129,18 +129,19 @@ def classify_result(path, result_path):
 
 
 def use_mysql(database="weibo"):
+    return
     """
 
     :param database:
     :return:
     """
-    conn = pymysql.connect(host='localhost',
-                           user='root',
-                           passwd='2014081029',
-                           db=database,
-                           charset='utf8')
-    cur = conn.cursor()
-    return conn, cur
+    # conn = pymysql.connect(host='localhost',
+    #                        user='root',
+    #                        passwd='2014081029',
+    #                        db=database,
+    #                        charset='utf8')
+    # cur = conn.cursor()
+    # return conn, cur
 
 
 def read_text_old_mysql(end_time, days, database="weibo"):
@@ -149,20 +150,28 @@ def read_text_old_mysql(end_time, days, database="weibo"):
     :param database:
     :return:
     """
-    conn, cur = use_mysql(database=database)
-    sql = "select * from content;"
-    cur.execute(sql)
-    rows = cur.fetchall()
+    # conn, cur = use_mysql(database=database)
+    # sql = "select * from content;"
+    # cur.execute(sql)
+    # rows = cur.fetchall()
 
     result = []
-    start_time = end_time.shift(days=-days)
-    for row in rows:
-        pub_time = arrow.get(row[2], 'YYYY-MM-DD')
-        pub_timestamp = pub_time.timestamp
+    for i in range(1, 10001):
+        result.append(['a', 'b', 'c', 'd'])
 
-        if start_time.timestamp <= pub_timestamp <= end_time.timestamp and len(row[1]) >= 10:
-            temp = [row[1], row[4], row[5], row[2]]
-            result.append(temp)
+    # start_time = end_time.shift(days=-days)
+    # for row in rows:
+    #     pub_time = arrow.get(row[2], 'YYYY-MM-DD')
+    #     pub_timestamp = pub_time.timestamp
+    #
+    #     if start_time.timestamp <= pub_timestamp <= end_time.timestamp and len(row[1]) >= 10:
+    #
+    #         temp = [row[1], row[4], row[5], row[2]]
+    #         result.append(temp)
+
+
+
+
     return result
 
 

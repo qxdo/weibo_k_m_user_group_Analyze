@@ -8,7 +8,6 @@ mysql client
 @author guoweikuang
 """
 import pymysql
-from DBUtils.PooledDB import PooledDB
 from .config import Config
 from .logger import logger
 from .bloom_filter import is_repeat
@@ -25,27 +24,29 @@ class MysqlClient(Client):
     def __init__(self, pool_num=5):
         self.pool_num = pool_num
         self.config = Config()
-        self.pool = PooledDB(pymysql, self.pool_num,
-                             host=self.config.host,
-                             user=self.config.username,
-                             passwd=self.config.password,
-                             port=self.config.port,
-                             db=self.config.db,
-                             charset=self.config.charset)
 
-        self.conn = self.pool.connection()
-        self.cur = self.conn.cursor()
+        # self.conn = pymysql.connect(
+        #     host=self.config.host,
+        #     user=self.config.username,
+        #     password=self.config.password,
+        #     port=self.config.port,
+        #     db=self.config.db,
+        #     charset=self.config.charset
+        # )
+        # self.cur = self.conn.cursor()
 
     def client(self):
-        self.pool = PooledDB(pymysql, self.pool_num,
-                             host=self.config.host,
-                             user=self.config.username,
-                             passwd=self.config.password,
-                             port=self.config.port,
-                             charset=self.config.charset)
-        self.conn = self.pool.connection()
-        self.cur = self.conn.cursor()
-        return self.cur
+        return None
+        # self.conn = pymysql.connect(
+        #     host=self.config.host,
+        #     user=self.config.username,
+        #     password=self.config.password,
+        #     port=self.config.port,
+        #     db=self.config.db,
+        #     charset=self.config.charset
+        # )
+        # self.cur = self.conn.cursor()
+        # return self.cur
 
     def save_data_to_mysql(self, *args, **kwargs):
         """save data to mysql
@@ -67,8 +68,9 @@ class MysqlClient(Client):
             self.conn.rollback()
 
     def close_mysql(self):
-        self.conn.close()
-        self.cur.close()
+        return
+        #self.conn.close()
+        # self.cur.close()
 
 
 def get_mysql_client():

@@ -37,7 +37,7 @@ class Parser(object):
     def __init__(self, text):
         self.text = text
         self.result = []
-        self.client = MysqlClient()
+        # self.client = MysqlClient()
 
     def close_client(self):
         return self.client.close_mysql()
@@ -70,7 +70,7 @@ class Parser(object):
                 url = url.get('href')
                 print(comment_num, like_num, title, url)
                 self.result.append((title, comment_num, like_num, pub_time))
-                self.client.save_data_to_mysql(title, pub_time, comment_num, like_num, url)
+                # self.client.save_data_to_mysql(title, pub_time, comment_num, like_num, url)
 
     def extract_title(self, title):
         """过滤内容中的特殊字符和表情

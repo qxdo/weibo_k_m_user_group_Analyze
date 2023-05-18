@@ -64,14 +64,14 @@ if __name__ == '__main__':
     #labels = run_min_kmeans(k=2, vsm_name='total')
 
     #  画图模块
-    #run_draw_pie(db=2)
-    #run_draw_chart(db=1)
-    #run_draw_top_keyword_barh(db=2)
-    #run_draw_cluster_chart(db=1)
+    run_draw_pie(db=2)
+    run_draw_chart(db=1)
+    run_draw_top_keyword_barh(db=2)
+    run_draw_cluster_chart(db=1)
 
     #   对聚类结果进行归类模块
-    #classify_k_cluster_to_redis(labels=labels, texts=rows)
-    #classify_k_cluster_to_file(labels=labels, texts=rows)
+    classify_k_cluster_to_redis(labels=labels, texts=rows)
+    classify_k_cluster_to_file(labels=labels, texts=rows)
 
     #   敏感词发现模块
     results = []

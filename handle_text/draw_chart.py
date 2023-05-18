@@ -23,9 +23,11 @@ from .utils import get_categorys
 
 
 matplotlib.matplotlib_fname()
-plt.rcParams['font.sans-serif'] = ['YaHei Consolas Hybrid']
+# plt.rcParams['font.sans-serif'] = ['YaHei Consolas Hybrid']
+plt.rcParams['font.sans-serif'] = ['SimSun']
 plt.rcParams['axes.unicode_minus'] = False
-font = {'family' : 'YaHei Consolas Hybrid',
+# font = {'family' : 'YaHei Consolas Hybrid',
+font = {'family' : 'SimSun',
  'weight' : 'bold',
  'size' : 15}
 matplotlib.rc('font', **font)
@@ -48,6 +50,7 @@ class DrawChart(object):
             category = category[:-4]
             key_name = HOT_CLUSTER % category
             score = self.client.get(key_name)
+
             if score:
                 self.hot_score[category] = float(score)
 
@@ -190,10 +193,11 @@ class DrawChart(object):
         plt.show()
 
     def get_labels_percent(self, label):
-        sql = "SELECT count(*) from opinion where event_type = %s"
-        self.mysql_client.cur.execute(sql, (label,))
-        count = self.mysql_client.cur.fetchall()
-        return int(count[0][0])
+        # sql = "SELECT count(*) from opinion where event_type = %s"
+        # self.mysql_client.cur.execute(sql, (label,))
+        # count =  self.mysql_client.cur.fetchall()
+        # return int(count[0][0])
+        return 10000
 
 
 def run_draw_chart(db=2):

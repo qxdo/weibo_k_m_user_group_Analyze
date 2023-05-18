@@ -6,6 +6,7 @@ K-Means module
 @author guoweikuang
 """
 import numpy
+import numpy as np
 from common.utils import load_data_set
 from sklearn.cluster import KMeans as K_Means
 from sklearn.cluster import MiniBatchKMeans
@@ -156,6 +157,8 @@ def run_kmeans_by_scikit(k, vsm_name="total"):
     
     data_set = numpy.mat(load_data_set(vsm_name=vsm_name))
     # k = find_optimal_k_value(data_set)
+    data_set = np.asarray(data_set)
+    print('data_set:', data_set)
     k_means = K_Means(init="k-means++", n_clusters=k)
     matrix = k_means.fit_predict(data_set)
     labels = list(matrix)

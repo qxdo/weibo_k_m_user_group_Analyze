@@ -198,14 +198,17 @@ def load_data_set(vsm_name):
     :param vsm_name: vsm name
     :return:
     """
-    client = redis_client()
+    #client = redis_client()
 
-    datas = client.lrange(VSM_NAME % vsm_name, 0, -1)
+    # datas = client.lrange(VSM_NAME % vsm_name, 0, -1)
     data_set = []
-    for data in datas:
-        data = [float(i) for i in data.decode('utf-8').strip().split(" ")]
+    for i in range(1, 10000):
+        random_numbers = [random.randint(0, 100) for _ in range(10)]
+        data_set.append(random_numbers)
+    # for data in datas:
+        # data = [float(i) for i in data.decode('utf-8').strip().split(" ")]
         #data = map(float, data.decode('utf-8').split(' '))
-        data_set.append(data)
+        #data_set.append(data)
     return data_set
 
 
